@@ -22,6 +22,7 @@ model User{
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   
+  //chennel
   // Video 
   // Likes
   //comment

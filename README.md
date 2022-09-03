@@ -5,10 +5,12 @@
 - [x] Login
 - [x] loggedinUser/protectedUser
 - [x] Edit profile(hash password)
-- [] See profile
+- [x] My profile
 - [] Avatar upload (editProfile-avatar)
 - [] social api login/social create account
 - [] Email verification
+
+## Chennel
 
 ## Video
 
