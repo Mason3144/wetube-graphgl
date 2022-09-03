@@ -1,14 +1,17 @@
 require("dotenv").config();
-import { ApolloServer, gql } from "apollo-server";
-import { PrismaClient } from "@prisma/client";
+import { ApolloServer } from "apollo-server";
 import schema from "./schema";
-
-const client = new PrismaClient();
+import client from "./client";
+import { loggedinUser, protectedUser } from "./users/users.utils";
 
 const server = new ApolloServer({
   schema,
   context: async ({ req }) => {
-    return { client };
+    return {
+      client,
+      loggedinUser: loggedinUser(req.headers.token),
+      protectedUser,
+    };
   },
   csrfPrevention: true,
   cache: "bounded",

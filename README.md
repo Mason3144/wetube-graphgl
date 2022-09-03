@@ -3,7 +3,7 @@
 - [x] User model
 - [x] Create account(hash password)
 - [x] Login
-- [] loggedinUser/protectedUser
+- [x] loggedinUser/protectedUser
 - [] Logout
 - [] Edit profile(hash password)
 - [] See profile
