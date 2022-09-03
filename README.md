@@ -2,13 +2,13 @@
 
 - [x] User model
 - [x] Create account(hash password)
-- [] Login
+- [x] Login
 - [] loggedinUser/protectedUser
 - [] Logout
 - [] Edit profile(hash password)
 - [] See profile
 - [] Avatar upload
-- [] API login
+- [] social api login/social create account
 - [] Email verification
 
 ## Video
