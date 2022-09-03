@@ -9,7 +9,7 @@ const server = new ApolloServer({
   context: async ({ req }) => {
     return {
       client,
-      loggedinUser: loggedinUser(req.headers.token),
+      loggedinUser: await loggedinUser(req.headers.token),
       protectedUser,
     };
   },

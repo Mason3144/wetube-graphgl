@@ -1,14 +1,17 @@
+import { User } from "@prisma/client";
 import * as jwt from "jsonwebtoken";
 import client from "../client";
-import { LoggedinUser, ProtectedUser } from "../types";
 
-export const loggedinUser: LoggedinUser = async (token) => {
+export const loggedinUser = async (token: string) => {
   try {
+    if (!token) {
+      return null;
+    }
     const userVerify = await jwt.verify(token, process.env.SECRET_KEY);
     if (!userVerify) {
       return null;
     }
-    const user = client.user.findUnique({ where: { id: userVerify.id } });
+    const user = await client.user.findUnique({ where: { id: userVerify.id } });
     if (!user) {
       return null;
     }
@@ -18,7 +21,7 @@ export const loggedinUser: LoggedinUser = async (token) => {
   }
 };
 
-export const protectedUser: ProtectedUser = (user) => {
+export const protectedUser = (user: User) => {
   if (!user) {
     throw new Error("Pls login first");
   }
