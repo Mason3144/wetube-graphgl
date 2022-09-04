@@ -10,7 +10,6 @@ import { loggedinUser, protectedUser } from "./users/users.utils";
 async function startServer() {
   const server = new ApolloServer({
     schema,
-    // Using graphql-upload without CSRF prevention is very insecure.
     csrfPrevention: true,
     cache: "bounded",
     context: async ({ req }) => {
@@ -26,7 +25,6 @@ async function startServer() {
 
   const app = express();
 
-  // This middleware should be added before calling `applyMiddleware`.
   app.use(graphqlUploadExpress());
 
   server.applyMiddleware({ app });
@@ -37,21 +35,3 @@ async function startServer() {
 }
 
 startServer();
-
-// const server = new ApolloServer({
-//   schema,
-//   context: async ({ req }) => {
-//     return {
-//       client,
-//       loggedinUser: await loggedinUser(req.headers.token),
-//       protectedUser,
-//     };
-//   },
-//   csrfPrevention: true,
-//   cache: "bounded",
-//   plugins: [],
-// });
-
-// server.listen().then(({ url }) => {
-//   console.log(`🚀  Server ready at ${url}`);
-// });

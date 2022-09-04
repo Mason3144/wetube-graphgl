@@ -5,7 +5,8 @@
   "scripts": {
     "studio": "npx prisma studio",
     "dev": "nodemon --exec ts-node src/server --ext ts,js",
-    "migrate": "npx prisma migrate dev"
+    "migrate": "npx prisma migrate dev",
+    "start": "youtube-clone-graphql/src/index.js start"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +33,7 @@
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.2",
     "express": "^4.17.3",
+    "google-auth-library": "^8.5.1",
     "graphql": "^16.6.0",
     "graphql-upload": "^13.0.0",
     "jsonwebtoken": "^8.5.1"

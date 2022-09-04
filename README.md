@@ -7,7 +7,7 @@
 - [x] Edit profile(hash password)
 - [x] My profile
 - [x] Avatar upload (editProfile-avatar)
-- [] social api login/social create account
+- [x] social api login/social create account
 - [] Email verification
 
 ## Chennel
