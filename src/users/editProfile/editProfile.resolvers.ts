@@ -1,5 +1,6 @@
 import { Resolvers } from "../../types";
 import * as bcrypt from "bcrypt";
+import { uploadToS3, deleteToS3 } from "../../shared/shared.uploads";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -11,10 +12,21 @@ const resolvers: Resolvers = {
       try {
         protectedUser(loggedinUser);
         let newPassword = null;
+        let newAvatar = null;
         if (password) {
           newPassword = await bcrypt.hash(password, 10);
         }
-        //Avatar field needs to be added
+        if (avatar) {
+          newAvatar = await uploadToS3(avatar, loggedinUser.id, "avatar");
+        }
+        const previousAvatar = await client.user.findUnique({
+          where: { id: loggedinUser.id },
+          select: { avatar: true },
+        });
+        if (previousAvatar.avatar) {
+          deleteToS3(previousAvatar.avatar);
+        }
+
         await client.user.update({
           where: { id: loggedinUser.id },
           data: {
@@ -22,6 +34,7 @@ const resolvers: Resolvers = {
             firstName,
             lastName,
             ...(newPassword && { password: newPassword }),
+            ...(newAvatar && { avatar: newAvatar }),
           },
         });
         return { ok: true };

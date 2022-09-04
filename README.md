@@ -6,12 +6,16 @@
 - [x] loggedinUser/protectedUser
 - [x] Edit profile(hash password)
 - [x] My profile
-- [] Avatar upload (editProfile-avatar)
+- [x] Avatar upload (editProfile-avatar)
 - [] social api login/social create account
 - [] Email verification
 
 ## Chennel
 
 ## Video
+
+## Search videos and chennels
+
+## Comment
 
 ## Likes
