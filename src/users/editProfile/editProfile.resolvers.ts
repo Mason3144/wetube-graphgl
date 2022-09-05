@@ -1,6 +1,7 @@
 import { Resolvers } from "../../types";
 import * as bcrypt from "bcrypt";
 import { uploadToS3, deleteToS3 } from "../../shared/shared.uploads";
+import { sendEmail } from "../users.utils";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -25,6 +26,14 @@ const resolvers: Resolvers = {
         });
         if (previousAvatar.avatar) {
           deleteToS3(previousAvatar.avatar);
+        }
+        if (email) {
+          const code = await client.verificationCode.update({
+            where: { userId: loggedinUser.id },
+            select: { code: true },
+            data: { verified: false },
+          });
+          await sendEmail(email, loggedinUser.firstName, code.code);
         }
 
         await client.user.update({

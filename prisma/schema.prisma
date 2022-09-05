@@ -19,11 +19,21 @@ model User{
   firstName String
   lastName String?
   socialLogin Boolean @default(false)
+  verified VerificationCode?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
   //chennel
   // Video 
   // Likes
   //comment
+}
+
+model VerificationCode{
+  id Int @default(autoincrement()) @id
+  code String @unique
+  user User @relation(fields: [userId], references: [id])
+  userId Int @unique
+  verified Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

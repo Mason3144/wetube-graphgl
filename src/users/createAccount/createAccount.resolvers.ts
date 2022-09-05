@@ -1,5 +1,7 @@
 import { Resolvers } from "../../types";
+import { v4 as uuidv4 } from "uuid";
 import * as bcrypt from "bcrypt";
+import { sendEmail } from "../users.utils";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -27,9 +29,14 @@ const resolvers: Resolvers = {
           }
         }
         const hash = await bcrypt.hash(password, 10);
-        await client.user.create({
+        const user = await client.user.create({
           data: { password: hash, email, firstName, lastName },
         });
+        const code = uuidv4();
+        await client.verificationCode.create({
+          data: { code, user: { connect: { id: user.id } } },
+        });
+        await sendEmail(user.email, user.firstName, code);
         return { ok: true };
       } catch (error) {
         return { ok: false, error };
