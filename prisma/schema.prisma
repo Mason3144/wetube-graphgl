@@ -19,11 +19,11 @@ model User{
   firstName String
   lastName String?
   socialLogin Boolean @default(false)
-  verified VerificationCode?
+  verified VerificationCode? 
+  chennel Chennel?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  //chennel
-  // Video 
+  // Videos 
   // Likes
   //comment
 }
@@ -31,9 +31,19 @@ model User{
 model VerificationCode{
   id Int @default(autoincrement()) @id
   code String @unique
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId Int @unique
   verified Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Chennel{
+  id Int @default(autoincrement()) @id
+  chennelName String @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  //videos
 }
