@@ -21,11 +21,9 @@ model User{
   socialLogin Boolean @default(false)
   verified VerificationCode? 
   chennel Chennel?
+  videos Video[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  // Videos 
-  // Likes
-  //comment
 }
 
 model VerificationCode{
@@ -43,7 +41,23 @@ model Chennel{
   chennelName String @unique
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId Int @unique
+  videos Video[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  //videos
+}
+
+model Video{
+  id Int @default(autoincrement()) @id
+  videoName String
+  description String
+  views Int @default(0)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int @unique
+  chennel Chennel @relation(fields: [chennelId],references: [id], onDelete: Cascade)
+  chennelId Int @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  // Likes
+  //comment
+  //hashtags
 }

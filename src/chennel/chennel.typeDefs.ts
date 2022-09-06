@@ -1,13 +1,11 @@
 import { gql } from "apollo-server-express";
 
 export default gql`
-  type Video {
+  type Chennel {
     id: Int!
-    videoName: String!
-    description: String!
-    views: Int!
     user: User!
-    chennel: Chennel!
+    chennelName: String!
+    videos: [Video!]!
     createdAt: String!
     updatedAt: String!
   }

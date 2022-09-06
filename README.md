@@ -20,10 +20,23 @@ mailgun email [variable]에 code 추가 후 user-verified의 사용자 고유 �
 
 ## Video
 
+- [x] Chennel Model
 - [x] Create/Delete Chennel
+- [x] Video Model
+- [] Create Video
+- [] See Video
+- [] Edit Video
+- [] Delete Video
+- [] Upload Video
+- [] Hashtag
+- [] Comment
+- [] Likes
+- [] Views
 
-## Search videos and chennels
+## Hashtag
 
 ## Comment
 
 ## Likes
+
+## Search videos and chennels
