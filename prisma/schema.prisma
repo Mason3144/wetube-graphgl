@@ -48,8 +48,9 @@ model Chennel{
 
 model Video{
   id Int @default(autoincrement()) @id
-  videoName String
+  videoName String @unique
   description String
+  video String
   views Int @default(0)
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId Int @unique
