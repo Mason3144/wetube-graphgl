@@ -1,3 +1,4 @@
+import { uploadToS3 } from "../../shared/shared.uploads";
 import { Resolvers } from "../../types";
 
 const resolvers: Resolvers = {
@@ -9,21 +10,20 @@ const resolvers: Resolvers = {
     ) => {
       try {
         protectedUser(loggedinUser);
-        const exist = await client.video.count({ where: { videoName } });
-        if (exist) {
-          return { ok: false, error: "Video name already exists" };
-        }
 
-        //Hashtag in description and video upload required
+        const location = await uploadToS3(video, loggedinUser.id, "video");
+
+        //Hashtag in description
         await client.video.create({
           data: {
-            video,
+            video: location,
             videoName,
             description,
             user: { connect: { id: loggedinUser.id } },
             chennel: { connect: { id: chennelId } },
           },
         });
+        return { ok: true };
       } catch (error) {
         return { ok: false, error };
       }

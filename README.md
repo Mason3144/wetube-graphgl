@@ -10,12 +10,12 @@
 - [x] social api login/social create account
 - [x] Email verification
 
---Backend--
+--Email verification/Backend--
 schema verification model 생성후 unique 코드 생성
 model user 와 연결 후 verified field defalt false
 mailgun email [variable]에 code 추가 후 user-verified의 사용자 고유 코드 전송
 
---Frontend--
+--Email verification/Frontend--
 사용자가 email을 클릭시에 arg로 url의 code 삽입후 Mutation verifyEmail실행
 
 ## Video
@@ -27,8 +27,8 @@ mailgun email [variable]에 code 추가 후 user-verified의 사용자 고유 �
 - [x] See Video
 - [x] Edit Video
 - [x] Delete Video
+- [x] Upload Video, createVideo/deleteVideo
 
-- [] Upload Video, createVideo/deleteVideo
 - [] Hashtag, createVideo/editVideo
 - [] Comment
 - [] Likes

@@ -6,7 +6,7 @@ AWS.config.update({
 });
 const S3 = new AWS.S3();
 
-export const uploadToS3 = async ({ file }, userId, path) => {
+export const uploadToS3 = async ({ file }, userId: number, path: string) => {
   const { filename, createReadStream } = file;
   const Body = createReadStream();
   const Key = `${path}/${userId}-${Date.now()}-${filename
@@ -22,7 +22,7 @@ export const uploadToS3 = async ({ file }, userId, path) => {
   return Location;
 };
 
-export const deleteToS3 = async (url) => {
+export const deleteToS3 = async (url: string) => {
   const decodedUrl = decodeURI(url);
   const fileName = decodedUrl.split("amazonaws.com/")[1];
   const Key = fileName.replace("%2C", ",");
