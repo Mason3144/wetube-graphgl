@@ -29,16 +29,19 @@ mailgun email [variable]에 code 추가 후 user-verified의 사용자 고유 �
 - [x] Delete Video
 - [x] Upload Video, createVideo/deleteVideo
 
-- [] Comment
 - [] Likes
 - [] Views
+- [] isMine, total
 
 ## Hashtag
 
 - [x] Hashtag, createVideo/editVideo
-- [] seeHashtags
+- [x] seeHashtags
 
 ## Comment
+
+- [x] Model Comment (relation with User and Video)
+- [x] Create/Edit/Delete Comment
 
 ## Likes
 

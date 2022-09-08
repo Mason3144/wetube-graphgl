@@ -22,6 +22,7 @@ model User{
   verified VerificationCode? 
   chennel Chennel?
   videos Video[]
+  comment Comment[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -57,16 +58,27 @@ model Video{
   chennel Chennel @relation(fields: [chennelId],references: [id], onDelete: Cascade)
   chennelId Int
   hashtags Hashtag[]
+  comment Comment[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   // Likes
-  //comment
 }
 
 model Hashtag{
   id Int @default(autoincrement()) @id
   hashtag String @unique
   videos Video[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Comment{
+  id Int @default(autoincrement()) @id
+  comment String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
+  video Video @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  videoId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
