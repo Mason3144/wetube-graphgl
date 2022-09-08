@@ -1,5 +1,6 @@
 import { uploadToS3 } from "../../shared/shared.uploads";
 import { Resolvers } from "../../types";
+import { handleHashtags } from "../videos.utils";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -13,12 +14,16 @@ const resolvers: Resolvers = {
 
         const location = await uploadToS3(video, loggedinUser.id, "video");
 
-        //Hashtag in description
         await client.video.create({
           data: {
             video: location,
             videoName,
             description,
+            hashtags: {
+              ...(description && {
+                connectOrCreate: handleHashtags(description),
+              }),
+            },
             user: { connect: { id: loggedinUser.id } },
             chennel: { connect: { id: chennelId } },
           },

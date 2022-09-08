@@ -56,9 +56,17 @@ model Video{
   userId Int
   chennel Chennel @relation(fields: [chennelId],references: [id], onDelete: Cascade)
   chennelId Int
+  hashtags Hashtag[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   // Likes
   //comment
-  //hashtags
+}
+
+model Hashtag{
+  id Int @default(autoincrement()) @id
+  hashtag String @unique
+  videos Video[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

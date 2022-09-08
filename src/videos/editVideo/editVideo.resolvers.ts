@@ -1,4 +1,5 @@
 import { Resolvers } from "../../types";
+import { handleHashtags } from "../videos.utils";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -10,11 +11,11 @@ const resolvers: Resolvers = {
       try {
         protectedUser(loggedinUser);
 
-        //Hashtag in description
         const video = await client.video.findUnique({
           where: { id },
-          select: { userId: true },
+          include: { hashtags: { select: { hashtag: true } } },
         });
+        console.log(video.hashtags);
         if (!video) {
           return { ok: false, error: "Video not found" };
         }
@@ -23,8 +24,18 @@ const resolvers: Resolvers = {
         }
         await client.video.update({
           where: { id },
-          data: { videoName, description },
+          data: {
+            videoName,
+            description,
+            hashtags: {
+              ...(description && {
+                disconnect: video.hashtags,
+                connectOrCreate: handleHashtags(description),
+              }),
+            },
+          },
         });
+
         return { ok: true };
       } catch (error) {
         return { ok: false, error };

@@ -11,4 +11,11 @@ export default gql`
     createdAt: String!
     updatedAt: String!
   }
+  type Hashtag {
+    id: Int!
+    hashtag: String!
+    videos: [Video!]!
+    createdAt: String!
+    updatedAt: String!
+  }
 `;
