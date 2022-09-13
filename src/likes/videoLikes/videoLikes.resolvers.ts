@@ -5,23 +5,30 @@ const resolvers: Resolvers = {
     videoLikes: async (_, { id }, { client, protectedUser, loggedinUser }) => {
       try {
         protectedUser(loggedinUser);
-        const exist = await client.video.count({ where: { id } });
+        const exist = await client.video.count({
+          where: { id },
+        });
+
         if (!exist) {
           return { ok: false, error: "Video not found" };
         }
-        const checkUser = await client.videoLikes
-          .findUnique({
-            where: { videoId: id },
-          })
-          .users({ select: { id: true } });
-        const findUser = checkUser.find(({ id }) => id === loggedinUser.id);
-        if (findUser) {
+        const checkUser = await client.videoLikes.count({
+          where: {
+            AND: [
+              { videoId: id },
+              { users: { some: { id: loggedinUser.id } } },
+            ],
+          },
+        });
+
+        if (checkUser) {
           await client.videoLikes.update({
             where: { videoId: id },
             data: { users: { disconnect: { id: loggedinUser.id } } },
           });
           return { ok: true };
         }
+
         await client.videoLikes.upsert({
           where: { videoId: id },
           update: {

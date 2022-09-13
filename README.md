@@ -45,7 +45,7 @@ mailgun email [variable]에 code 추가 후 user-verified의 사용자 고유 �
 
 ## Likes
 
-- [] Video likes (toggle, total likes)
+- [x] Video likes (toggle, total likes) array안에 특정 유저가 있는지 없는지 체크
 - [] Comment likes (toggle)
 
 ## Search videos and chennels
