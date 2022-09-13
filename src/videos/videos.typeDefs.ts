@@ -10,6 +10,7 @@ export default gql`
     chennel: Chennel!
     createdAt: String!
     updatedAt: String!
+    totalLikes: Int!
   }
   type Hashtag {
     id: Int!

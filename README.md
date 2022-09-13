@@ -29,9 +29,9 @@ mailgun email [variable]에 code 추가 후 user-verified의 사용자 고유 �
 - [x] Delete Video
 - [x] Upload Video, createVideo/deleteVideo
 
-- [] Likes
 - [] Views
 - [] isMine, total
+- [] subscription
 
 ## Hashtag
 
@@ -44,5 +44,8 @@ mailgun email [variable]에 code 추가 후 user-verified의 사용자 고유 �
 - [x] Create/Edit/Delete Comment
 
 ## Likes
+
+- [] Video likes (toggle, total likes)
+- [] Comment likes (toggle)
 
 ## Search videos and chennels
