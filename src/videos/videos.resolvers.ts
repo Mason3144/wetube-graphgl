@@ -11,6 +11,14 @@ const resolvers: Resolvers = {
       });
       return _count.users;
     },
+    allComments: async ({ id }, { lastId }, { client }) =>
+      client.comment.findMany({
+        where: { videoId: id },
+        take: 4,
+        skip: lastId ? 1 : 0,
+        ...(lastId && { cursor: { id: lastId } }),
+        orderBy: { createdAt: "desc" },
+      }),
   },
 };
 

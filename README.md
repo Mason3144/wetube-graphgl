@@ -28,7 +28,7 @@ mailgun email [variable]에 code 추가 후 user-verified의 사용자 고유 �
 - [x] Edit Video
 - [x] Delete Video
 - [x] Upload Video, createVideo/deleteVideo
-- [] See all comments(pagination)
+- [x] See all comments(pagination)
 
 - [] Views
 - [] isMine, total likes(comments)
