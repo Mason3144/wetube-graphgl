@@ -6,6 +6,7 @@ export default gql`
     comment: String!
     user: User!
     video: Video!
+    totalLikes: Int!
     createdAt: String!
     updatedAt: String!
   }

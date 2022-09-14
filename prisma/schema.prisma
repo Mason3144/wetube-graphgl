@@ -24,6 +24,7 @@ model User{
   videos Video[]
   comment Comment[]
   videoLikes VideoLikes[] @relation("videoLikes")
+  commentLikes CommentLikes[] @relation("commentLikes")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -81,6 +82,7 @@ model Comment{
   userId Int
   video Video @relation(fields: [videoId], references: [id], onDelete: Cascade)
   videoId Int
+  commentLikes CommentLikes?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -90,6 +92,15 @@ model VideoLikes{
   video Video @relation(fields: [videoId], references: [id], onDelete: Cascade)
   videoId Int @unique
   users User[] @relation("videoLikes")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CommentLikes{
+  id Int @default(autoincrement()) @id
+  comment Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  commentId Int @unique
+  users User[] @relation("commentLikes")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
