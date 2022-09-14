@@ -19,6 +19,12 @@ const resolvers: Resolvers = {
         ...(lastId && { cursor: { id: lastId } }),
         orderBy: { createdAt: "desc" },
       }),
+    isMine: async ({ userId }, _, { loggedinUser }) => {
+      if (!loggedinUser) {
+        return false;
+      }
+      return userId === loggedinUser.id;
+    },
   },
 };
 

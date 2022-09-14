@@ -8,5 +8,6 @@ export default gql`
     videos: [Video!]!
     createdAt: String!
     updatedAt: String!
+    isMine: Boolean!
   }
 `;

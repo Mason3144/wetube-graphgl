@@ -14,6 +14,12 @@ const resolvers: Resolvers = {
       });
       return _count.users;
     },
+    isMine: async ({ userId }, _, { loggedinUser }) => {
+      if (!loggedinUser) {
+        return false;
+      }
+      return userId === loggedinUser.id;
+    },
   },
 };
 

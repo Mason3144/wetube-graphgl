@@ -9,5 +9,6 @@ export default gql`
     totalLikes: Int!
     createdAt: String!
     updatedAt: String!
+    isMine: Boolean!
   }
 `;
