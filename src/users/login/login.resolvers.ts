@@ -5,7 +5,7 @@ import { sendEmail } from "../users.utils";
 
 const resolvers: Resolvers = {
   Mutation: {
-    login: async (_, { email, password }, { client, verifiedEmail }) => {
+    login: async (_, { email, password }, { client }) => {
       const user = await client.user.findUnique({
         where: { email },
         select: {

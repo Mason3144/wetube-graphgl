@@ -9,6 +9,8 @@
 - [x] Avatar upload (editProfile-avatar)
 - [x] social api login/social create account
 - [x] Email verification
+- [] password restriction
+- [] email restriction
 
 --Email verification/Backend--
 schema verification model 생성후 unique 코드 생성
@@ -31,7 +33,7 @@ mailgun email [variable]에 code 추가 후 user-verified의 사용자 고유 �
 - [x] See all comments(pagination)
 - [x] isMine, total likes(comments)
 - [x] Views
-
+- [] Thumbnail
 - [] subscription
 
 ## Hashtag
@@ -50,3 +52,6 @@ mailgun email [variable]에 code 추가 후 user-verified의 사용자 고유 �
 - [x] Comment likes (toggle)
 
 ## Search videos and chennels
+
+- [x]
+- [] chennel startswith로 바꾼뒤 구독자제일 많은것만 보여주기
