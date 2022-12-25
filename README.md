@@ -1,4 +1,20 @@
-## User
+## GraphQL을 이용한 유튜브 클론 코딩
+
+### Server
+
+- Apollo server express, GraphQL
+- AWS-S3
+- Google auth login
+- Mailgun
+
+### DB
+
+- Postgres
+- Prisma ORM
+
+## 진행 현황
+
+### User
 
 - [x] User model
 - [x] Create account(hash password)
@@ -9,8 +25,6 @@
 - [x] Avatar upload (editProfile-avatar)
 - [x] social api login/social create account
 - [x] Email verification
-- [] password restriction
-- [] email restriction
 
 --Email verification/Backend--
 schema verification model 생성후 unique 코드 생성
@@ -20,7 +34,7 @@ mailgun email [variable]에 code 추가 후 user-verified의 사용자 고유 �
 --Email verification/Frontend--
 사용자가 email을 클릭시에 arg로 url의 code 삽입후 Mutation verifyEmail실행
 
-## Video
+### Video
 
 - [x] Chennel Model
 - [x] Create/Delete Chennel
@@ -33,25 +47,22 @@ mailgun email [variable]에 code 추가 후 user-verified의 사용자 고유 �
 - [x] See all comments(pagination)
 - [x] isMine, total likes(comments)
 - [x] Views
-- [] Thumbnail
-- [] subscription
 
-## Hashtag
+### Hashtag
 
 - [x] Hashtag, createVideo/editVideo
 - [x] seeHashtags
 
-## Comment
+### Comment
 
 - [x] Model Comment (relation with User and Video)
 - [x] Create/Edit/Delete Comment
 
-## Likes
+### Likes
 
 - [x] Video likes (toggle, total likes) array안에 특정 유저가 있는지 없는지 체크
 - [x] Comment likes (toggle)
 
-## Search videos and chennels
+### Search videos and chennels
 
 - [x]
-- [] chennel startswith로 바꾼뒤 구독자제일 많은것만 보여주기
